@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Web</title>
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="../estiloresponsive.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
+
+  <style>
+/*EXPLICACIÓN PARA RESPONSIVE:Imágenes (<img>) ahora son responsivas usando .img-fluid y width: 100%.
+La imagen de fondo es responsiva usando min-height, background-size: cover, y flexbox.
+Se usan clases Bootstrap para que el contenido se ajuste en distintos tamaños de pantalla.
+Añadí una media query para mejorar la visualización en pantallas pequeñas.*/
+  body
+  {
+      font-family: 'Open Sans', sans-serif;
+      
+  }
+/*Imagen del fondo de la página*/
+  .fondo-img 
+  {
+  position: relative;/*nos va a permitir utilizar el ::before*/
+  width: 100%;/*el contenedor ocupa todo el ancho y al ser en % es responsive*/
+  min-height: 60%;/*altura mínima del 60% del alto visible del navegador*/
+  display: flex;/*activa el flexbox para alinear el contenido (texto y fotos)*/
+  align-items: center;/*centra el contenido verticalmente*/
+  justify-content: center;/*centra el contenido horizontalmente*/
+  overflow: hidden;/*oculta cualquier parte del ::before que se salga*/
+  z-index: 1;/*asegura que el contenido está encima de ::before*/
+}
+
+.fondo-img::before/*el pseudonimo before se encarga de mostrar la imagen del fondo con opacidad*/
+ {
+  content: "";/*es necesario para que funcione el ::before*/
+  position: absolute;/*posiciona la imagen del fondo dentro del .fondo-img*/
+  top: 0;/*nos va a colocar la imagen en la esquina superior izqda.*/
+  left: 0;
+  width: 100%;/*la imagen cubre todo el contenedor, y al ser % es responsive*/
+  height: 100%;
+  background-image: url('../IMG/aire2.png'); 
+  background-size: cover;/*con cover y center, la imagen está completa y centrada*/
+  background-position: center;
+  opacity: 0.4; /* Ajusta la opacidad que desees */
+  z-index: -1;  /*Al ponerle -1, va a aplicarlo a la capa, pero por debajo de las fotos y del texto de servicio*/
+ }
+
+/*Texto y fotos por encima del fondo*/
+  .servicio {
+  padding: 16px;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  }
+
+  .foto /* PARA QUE SEAN RESPONSIVAS: hacer los width y height con porcentajes o con auto para el responsive. El max-width define que la foto va a tener una anchura máxima del 100% (porcentaje otra vez) y box-sizing:border-box para que me tenga en cuenta en las medidas en padding y el border del elemento.Las imágenes escalarán proporcionalmente dentro de su contenedor*/
+  {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-radius: 15%;
+  aspect-ratio: 4 / 3; /* O usa la relación que desees: 16 / 9, 1 / 1, etc. */
+  object-fit: cover;   /* Recorta si se sale del contenedor */
+  }
+
+  @media (max-width: 768px) /*con @media los ajustes los hace específicos para móviles*/
+  {
+      .fondo-img {
+        flex-direction: column;
+        text-align: center;
+        min-height: 50%;
+      }
+
+      .servicio {
+        font-size: 1.2rem;
+      }
+
+      .foto {
+        padding: 0.5rem;
+      }
+  }
+
+  </style>
+
+</head>
+
+<body>
+
+<!-- Barra de navegación -->
+<header class="container-fluid bg-transparent py-2">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-3 col-lg-2">
+      <img src="../IMG/mlm8.png" alt="logotipo empresa" class="img-fluid p-1">
+    </div>
+    <div class="col-6 col-md-9 col-lg-10">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand d-lg-none" href="#">MLM</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link nav-btn" href="quienesresponsive.html">Quiénes somos</a></li>
+              <li class="nav-item"><a class="nav-link nav-btn" href="contactoresponsive.html">Contacto</a></li>
+              <li class="nav-item"><a class="nav-link nav-btn active" href="../index.html">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link nav-btn" href="#">Reformas integrales</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle nav-btn" href="#" data-bs-toggle="dropdown">Nuestros servicios</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="cerrajeria24responsive.html">Cerrajería 24h</a></li>
+                  <li><a class="dropdown-item" href="electricidadresponsive.html">Electricidad</a></li>
+                  <li><a class="dropdown-item" href="fontaneriaresponsive.html">Fontanería</a></li>
+                  <li><a class="dropdown-item" href="aireresponsive.html">Aire acondicionado</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- Imagen de fondo con texto y fotos -->
+<div class="container-fluid fondo-img">
+  <div class="row fila-img justify-content-center align-items-center text-center w-100">
+    <div class="col-12 col-md-4 mt-4"><!--si se hace pequeña, va a generarla en col-12 y con medida normal (md) en col-4-->
+      <p class="servicio">
+        Instalación de equipos nuevos.<br>
+        Mantenimiento de aparatos y limpieza de filtros.<br>
+        Diseño y cálculos necesarios para la instalación del sistema de climatización.<br>
+        Asesoramiento técnico a los clientes sobre eficiencia energética.
+      </p>
+    </div>
+    <div class="col-12 col-md-4"><!--si se hace pequeña, va a generarla en col-12 apilándola, y con medida normal (md) en col-4-->
+      <img class="foto img-fluid" src="../IMG/aire2.png" alt="Instalación aire acondicionado"><!--le da img-fluid para hacerlo responsive-->
+    </div>
+    <div class="col-12 col-md-4"><!--si se hace pequeña, va a generarla en col-12 apilándola, y con medida normal (md) en col-4-->
+      <img class="foto img-fluid" src="../IMG/aire3.png" alt="Instalación aire acondicionado"><!--le da img-fluid para hacerlo responsive-->
+    </div>
+  </div>
+</div>
+  
+  <!-- Footer -->
+<footer class="container-fluid py-4 text-white">
+  <div class="row text-center gy-3">
+    <div class="col-12 col-md-4">CONTACTO: <br> C/ O'donell, 19 13700 Tomelloso</div>
+    <div class="col-12 col-md-4">TELÉFONOS: <br> 620 921553 <br> 629 811476</div>
+    <div class="col-12 col-md-4">E-MAIL: <br> multiserviciosmlm@hotmail.com</div>
+  </div>
+  <div class="text-center mt-3">
+    <a href="políticaresponsive.html" class="text-white">Política de privacidad, en conformidad con la Ley Orgánica de Protección de Datos</a>
+  </div>
+</footer>
+
+</body>
+</html>
